@@ -100,4 +100,143 @@ game = Game(player_name="Denji", player_health=30, player_attack_power=20)
 game.add_enemy(enemy_1)
 game.add_enemy(enemy_2)
 game.play()
-_______________________________________________________________________________________________________________________________________
+_______________________________________________________________________________________________________________________________________________________________________
+<<<<<<<<<<<<<<<<<<<<<<<<<<PIRVELI AARASHEFASEBADI>>>>>>>>>>>>>>>>>
+<1>
+class Vehicle:
+    def __init__(self, max_speed, mileage):
+        self.max_speed = max_speed
+        self.mileage = mileage 
+
+car = Vehicle(max_speed=120, mileage=50000)
+
+
+print(car.max_speed)   # Output: 120
+print(car.mileage)     # Output: 50000
+________________________________________________ 
+
+<2>
+class Book:
+    def __init__(self, title, author, publisher):
+        self._title = title
+        self._author = author
+        self._publisher = publisher 
+
+    @property
+    def title(self):
+        return self._title
+    
+    @title.setter
+    def title(self, value):
+        self._title = value 
+
+    @property
+    def author(self):
+        return self._author
+    
+    @author.setter
+    def author(self, value):
+        self._author = value 
+
+    @property
+    def publisher(self):
+        return self._publisher
+    
+    @publisher.setter
+    def publisher(self, value):
+        self._publisher = value 
+
+    def __str__(self):
+        return f"{self._title}, {self._author}, {self._publisher}" 
+
+book = Book("The Catcher in the Rye", "J.D. Salinger", "Little, Brown and Company")
+print(book) 
+________________________________________________ 
+
+<3>
+class Dog:
+    def __init__(self, name, age, breed='Unknown'):
+        self.__name = name
+        self.__breed = breed
+        self.__age = age
+    
+    @property
+    def name(self):
+        return self.__name
+    
+    @name.setter
+    def name(self, name):
+        self.__name = name
+    
+    @property
+    def breed(self):
+        return self.__breed
+    
+    @breed.setter
+    def breed(self, breed):
+        self.__breed = breed
+    
+    @property
+    def age(self):
+        return self.__age
+    
+    @age.setter
+    def age(self, age):
+        self.__age = age
+    
+    def __str__(self):
+        return f"{self.__name}, {self.__breed}, {self.__age}"
+    
+    def bark(self):
+        print("Woof!")
+    
+    def sit(self):
+        print(f"{self.__name} is now sitting.")
+    
+    def roll_over(self):
+        print(f"{self.__name} rolled over!")
+my_dog = Dog("Buddy", 3, "Golden Retriever")
+print(my_dog)  # Output: Buddy, Golden Retriever, 3 
+
+my_dog.bark()  # Output: Woof! 
+
+my_dog.sit()  # Output: Buddy is now sitting. 
+
+my_dog.roll_over()  # Output: Buddy rolled over!
+
+
+my_dog.age = 5
+print(my_dog.age)  # Output: 5
+________________________________________________ 
+
+<4>
+import random 
+
+class Dice:
+    def __init__(self, sides=6):
+        self._sides = self.validate(sides)
+    
+    @staticmethod
+    def validate(sides):
+        if sides < 2 or sides > 144:
+            raise ValueError("Dice sides should be between 2 and 144.")
+        return sides
+    
+    def roll(self):
+        return random.randint(1, self._sides)
+
+
+while True:
+    dice_type = input("Enter the type of dice you want to roll (e.g. D6, D12): ")
+    try:
+        num_sides = int(dice_type[1:])
+        dice = Dice(num_sides)
+        print("You rolled:", dice.roll())
+    except ValueError as e:
+        print("Error:", e)
+    except:
+        print("Invalid input.")
+    finally:
+        play_again = input("Do you want to roll again? (y/n): ")
+        if play_again.lower() != 'y':
+            break
