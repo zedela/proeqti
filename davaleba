@@ -1,0 +1,103 @@
+<<<<<<<<<<<<<<<<<<TAMASHI>>>>>>>>>>>>>>>>>
+__________________________________________________________________
+import random
+
+
+class Character:
+    def __init__(self, name, health, attack_power):
+        self._name = name
+        self._health = health
+        self._attack_power = attack_power
+
+    @property
+    def name(self):
+        return self._name
+
+    @property
+    def health(self):
+        return self._health
+
+    @health.setter
+    def health(self, value):
+        self._health = value
+
+    @property
+    def attack_power(self):
+        return self._attack_power
+
+    def attack(self, opponent):
+        damage = random.randint(1, self._attack_power)
+        opponent.health -= damage
+        print(f"{self._name} attacks {opponent.name} for {damage} damage!")
+
+    def __str__(self):
+        return f"{self._name} (Health: {self._health}, Attack Power: {self._attack_power})"
+
+
+class Player(Character):
+    def __init__(self, name, health, attack_power, gold=0):
+        super().__init__(name, health, attack_power)
+        self._gold = gold
+
+    @property
+    def gold(self):
+        return self._gold
+
+    def collect_gold(self, amount):
+        self._gold += amount
+        print(f"{self._name} has collected {amount} gold!")
+
+    def __str__(self):
+        return f"{super().__str__()} (Gold: {self._gold})"
+
+
+class Enemy(Character):
+    def __init__(self, name, health, attack_power, gold_reward):
+        super().__init__(name, health, attack_power)
+        self._gold_reward = gold_reward
+
+    def defeated(self):
+        print(f"{self._name} is defeated!")
+        return self._gold_reward
+
+    def __str__(self):
+        return f"{super().__str__()} (Gold Reward: {self._gold_reward})"
+
+
+class Game:
+    def __init__(self, player_name, player_health, player_attack_power):
+        self._player = Player(player_name, player_health, player_attack_power)
+        self._enemies = []
+
+    def add_enemy(self, enemy):
+        self._enemies.append(enemy)
+
+    def play(self):
+        print(f"Welcome, {self._player.name}!")
+        while self._enemies:
+            enemy = random.choice(self._enemies)
+            print(f"A wild {enemy.name} appears!")
+            while self._player.health > 0 and enemy.health > 0:
+                self._player.attack(enemy)
+                if enemy.health <= 0:
+                    gold_reward = enemy.defeated()
+                    self._player.collect_gold(gold_reward)
+                    break
+                enemy.attack(self._player)
+            if self._player.health <= 0:
+                print(f"{self._player.name} has been defeated!\nGame over.")
+                return
+            self._enemies.remove(enemy)
+        print(
+            f"Congratulations, {self._player.name}! You have defeated all enemies and won the game with {self._player.gold} gold.")
+
+
+player = Player(name="Denji", health=30, attack_power=20, gold=0)
+enemy_1 = Enemy(name="Goblin", health=30, attack_power=10, gold_reward=10)
+enemy_2 = Enemy(name="Dagon", health=40, attack_power=25, gold_reward=50)
+
+game = Game(player_name="Denji", player_health=30, player_attack_power=20)
+game.add_enemy(enemy_1)
+game.add_enemy(enemy_2)
+game.play()
+_______________________________________________________________________________________________________________________________________
