@@ -240,3 +240,145 @@ while True:
         play_again = input("Do you want to roll again? (y/n): ")
         if play_again.lower() != 'y':
             break
+_______________________________________________________________________________________________________________________________________________________________________
+<<<<<<<<<<<<<<<<<<<<<<MEORE ARASHEFASEBADI>>>>>>>>>>>>>>>>>>>>>>>>>
+<1>
+class Shape:
+    def area(self):
+        pass
+
+    def perimeter(self):
+        pass
+
+
+class Circle(Shape):
+    def __init__(self, radius):
+        self._radius = radius
+
+    @property
+    def radius(self):
+        return self._radius
+
+    @radius.setter
+    def radius(self, value):
+        self._radius = value
+
+    def area(self):
+        return 3.141592653589793 * self._radius ** 2
+
+    def perimeter(self):
+        return 2 * 3.141592653589793 * self._radius
+
+
+class Square(Shape):
+    def __init__(self, side_length):
+        self._side_length = side_length
+
+    @property
+    def side_length(self):
+        return self._side_length
+
+    @side_length.setter
+    def side_length(self, value):
+        self._side_length = value
+
+    def area(self):
+        return self._side_length ** 2
+
+    def perimeter(self):
+        return 4 * self._side_length
+__________________________________________
+
+
+<2>
+class Vehicle:
+    def __init__(self, make, model, year):
+        self._make = make
+        self._model = model
+        self._year = year
+   
+    @property
+    def make(self):
+        return self._make
+   
+    @property
+    def model(self):
+        return self._model
+   
+    @property
+    def year(self):
+        return self._year
+
+
+class Car(Vehicle):
+    def __init__(self, make, model, year, num_wheels, num_doors):
+        super().__init__(make, model, year)
+        self._num_wheels = num_wheels
+        self._num_doors = num_doors
+   
+    @property
+    def num_wheels(self):
+        return self._num_wheels
+   
+    @property
+    def num_doors(self):
+        return self._num_doors
+
+
+class ElectricCar(Car):
+    def __init__(self, make, model, year, num_wheels, num_doors, battery_size, charge_time):
+        super().__init__(make, model, year, num_wheels, num_doors)
+        self._battery_size = battery_size
+        self._charge_time = charge_time
+   
+    @property
+    def battery_size(self):
+        return self._battery_size
+   
+    @property
+    def charge_time(self):
+        return self._charge_time
+_______________________________________________
+
+<3>
+class Animal:
+    def eat(self):
+        print("Nom nom nom")
+   
+    def sleep(self):
+        print("Zzzzzzzzz")
+
+class Cage:
+    def __init__(self):
+        self._animals = []
+       
+    def get_animals(self):
+        return self._animals
+   
+    def add_animal(self, animal):
+        self._animals.append(animal)
+       
+
+class ZooKeeper:
+    def feed_animals(self, cage):
+        animals = cage.get_animals()
+        for animal in animals:
+            animal.eat()
+   
+    def tend_to_animals(self, cage):
+        animals = cage.get_animals()
+        for animal in animals:
+            animal.sleep()
+           
+    def add_animal(self, cage, animal):
+        cage.add_animal(animal)
+
+class PettingZooKeeper(ZooKeeper):
+    def pet_animals(self, cage):
+        animals = cage.get_animals()
+        for animal in animals:
+            print("Petting", end=" ")
+            animal.sleep()
+   
+    def add_animal(self, cage, animal):
+        raise NotImplementedError("PettingZooKeeper cannot add an animal to a cage")
